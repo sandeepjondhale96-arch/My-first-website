@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Music Playlist</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #f1f8e9); /* soft pastel gradient */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #1a237e; /* deep indigo */
+            margin-top: 30px;
+        }
+        h2 {
+            color: #00695c; /* teal */
+            margin-top: 20px;
+        }
+        ol, ul {
+            display: inline-block;
+            text-align: left;
+            margin: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style-position: inside; /* ensures bullets/numbers stay inside box */
+        }
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #0288d1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        a:hover {
+            background-color: #01579b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>My Music Playlist</h1>
+
+    <p>Welcome to my <b>favorite</b> songs collection.<br>
+    Music makes life <i>beautiful</i> and fun!</p>
+
+    <h2>Top Songs</h2>
+    <ol>
+        <li>Shape of You - Ed Sheeran</li>
+        <li>Blinding Lights - The Weeknd</li>
+        <li>Rolling in the Deep - Adele</li>
+        <li>Someone Like You - Adele</li>
+        <li>Uptown Funk - Mark Ronson ft. Bruno Mars</li>
+    </ol>
+
+    <h2>Genres</h2>
+    <ul>
+        <li>Pop</li>
+        <li>R&B</li>
+        <li>Rock</li>
+        <li>Hip-Hop</li>
+        <li>Classical</li>
+    </ul>
+
+    <p>Discover more music on 
+    <a href="https://music.youtube.com" target="_blank">YouTube Music</a>.</p>
+
+    <!-- Feedback link -->
+    <p><a href="feedback.html" target="_blank">Give Feedback</a></p>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #e3f2fd); /* soft pink-blue gradient */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #4a148c; /* rich purple */
+            margin-top: 30px;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            margin: 50px auto;
+            width: 360px;
+            border-radius: 12px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+        }
+        input, select, textarea {
+            width: 92%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #8e24aa;
+            outline: none;
+            box-shadow: 0 0 6px rgba(142,36,170,0.6);
+        }
+        button {
+            background-color: #43a047;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 95%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #2e7d32;
+            transform: scale(1.05);
+        }
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Feedback Form</h1>
+    <form id="feedbackForm">
+        <input type="text" id="username" placeholder="Username (letters & underscores only)" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+
+        <!-- Rating dropdown -->
+        <select id="rating" required>
+            <option value="">Rate the playlist</option>
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Good</option>
+            <option value="3">⭐⭐⭐ Average</option>
+            <option value="2">⭐⭐ Poor</option>
+            <option value="1">⭐ Very Poor</option>
+        </select><br>
+
+        <!-- Suggestion box -->
+        <textarea id="suggestion" rows="4" placeholder="Your suggestions..." required></textarea><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let username = document.getElementById("username").value;
+            let rating = document.getElementById("rating").value;
+            let suggestion = document.getElementById("suggestion").value;
+
+            // Regex: only letters and underscores
+            let usernamePattern = /^[A-Za-z_]+$/;
+
+            if (!usernamePattern.test(username)) {
+                document.getElementById("message").innerText = "❌ Username can only contain letters and underscores!";
+                document.getElementById("message").style.color = "red";
+                return;
+            }
+
+            if(rating === "" || suggestion.trim() === "") {
+                document.getElementById("message").innerText = "❌ Please provide a rating and suggestion!";
+                document.getElementById("message").style.color = "red";
+            } else {
+                document.getElementById("message").innerText = 
+                    "✅ Thank you, " + username + "! Your feedback (Rating: " + rating + " stars) has been submitted.";
+                document.getElementById("message").style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>
